@@ -68,11 +68,9 @@ def run():
         (conf.action,
             {
                 "cnameFrom": conf.domain_name,
-                "cnameTo": '.'.join([conf.san_cert_name,
-                                     conf.san_cert_domain_suffix]),
+                "cnameTo": '.'.join([conf.san_cert_name, conf.san_cert_domain_suffix]),
                 "cnameType": "EDGE_HOSTNAME"
             })
     ])
 
-    update_property_flow.run_update_property_flow(
-        conf.property_spec, conf.update_type, update_info_list)
+    update_property_flow.run_update_property_flow(conf.property_spec, conf.update_type, update_info_list)

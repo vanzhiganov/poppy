@@ -66,7 +66,8 @@ class DNSDriverBase(object):
 
         raise NotImplementedError
 
-    @abc.abstractproperty
+    # @abc.abstractproperty
+    @property
     def dns_name(self):
         """Name of this provider.
 
@@ -84,7 +85,8 @@ class DNSDriverBase(object):
 
         raise NotImplementedError
 
-    @abc.abstractproperty
+    @property
+    # @abc.abstractproperty
     def services_controller(self):
         """Returns the driver's hostname controller.
 
@@ -92,7 +94,8 @@ class DNSDriverBase(object):
         """
         raise NotImplementedError
 
-    @abc.abstractproperty
+    @property
+    # @abc.abstractproperty
     def retry_exceptions(self):
         """Retry on certain exceptions.
 

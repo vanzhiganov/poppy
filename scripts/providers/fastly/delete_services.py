@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import ConfigParser
+from configparser import ConfigParser, RawConfigParser
 import os
 import re
 
@@ -21,7 +21,7 @@ import fastly
 
 
 # get apikey
-configParser = ConfigParser.RawConfigParser()
+configParser = RawConfigParser()
 configFilePath = os.path.expanduser('~/.poppy/poppy.conf')
 configParser.read(configFilePath)
 apikey = configParser.get('drivers:provider:fastly', 'apikey')

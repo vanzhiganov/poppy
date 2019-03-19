@@ -35,8 +35,5 @@ def lazy_property(write=False, delete=True):
         def deleter(self):
             delattr(self, attr_name)
 
-        return property(fget=getter,
-                        fset=write and setter,
-                        fdel=delete and deleter,
-                        doc=fn.__doc__)
+        return property(fget=getter, fset=write and setter, fdel=delete and deleter, doc=fn.__doc__)
     return wrapper

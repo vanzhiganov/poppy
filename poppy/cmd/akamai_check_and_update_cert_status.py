@@ -17,24 +17,15 @@ from oslo_config import cfg
 from oslo_log import log
 from poppy.common import cli
 
-from poppy.provider.akamai.background_jobs.check_cert_status_and_update import \
-    check_cert_status_and_update_flow
+from poppy.provider.akamai.background_jobs.check_cert_status_and_update import check_cert_status_and_update_flow
 
 LOG = log.getLogger(__name__)
 
 CLI_OPT = [
-    cfg.StrOpt('domain_name',
-               required=True,
-               help='The domain you want to check cert status on'),
-    cfg.StrOpt('cert_type',
-               default='san',
-               help='Cert type of this cert'),
-    cfg.StrOpt('project_id',
-               required=True,
-               help='project id of this cert'),
-    cfg.StrOpt('flavor_id',
-               default='cdn',
-               help='flavor id of this cert'),
+    cfg.StrOpt('domain_name', required=True, help='The domain you want to check cert status on'),
+    cfg.StrOpt('cert_type', default='san', help='Cert type of this cert'),
+    cfg.StrOpt('project_id', required=True, help='project id of this cert'),
+    cfg.StrOpt('flavor_id', default='cdn', help='flavor id of this cert'),
 ]
 
 
