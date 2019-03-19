@@ -3,3 +3,4 @@ requests
 pyrax
 sets
 jsonpatch
+maxcdn

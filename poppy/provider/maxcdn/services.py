@@ -31,22 +31,20 @@ class ServiceController(base.ServiceBase):
         return self.driver.client
 
     def __init__(self, driver):
-        '''Initialize a service controller object.'''
+        """Initialize a service controller object."""
         super(ServiceController, self).__init__(driver)
 
         self.driver = driver
 
     def update(self, pullzone_id, service_obj):
-        '''MaxCDN update.
+        """MaxCDN update.
 
          manager needs to pass in pullzone id to delete.
-        '''
+        """
         try:
             # TODO(tonytan4ever): correctly convert and update service_obj
             # to a dictionary passed into maxcdn call.
-            update_response = self.client.put('/zones/pull.json/%s'
-                                              % pullzone_id,
-                                              params=service_obj.to_dict())
+            update_response = self.client.put('/zones/pull.json/%s' % pullzone_id, params=service_obj.to_dict())
             if update_response['code'] != 200:
                 return self.responder.failed(update_response.text)
             links = {}
@@ -57,10 +55,10 @@ class ServiceController(base.ServiceBase):
             return self.responder.failed(str(e))
 
     def create(self, service_obj):
-        '''MaxCDN create.
+        """MaxCDN create.
 
          manager needs to pass in a service name to create.
-        '''
+        """
         try:
             # Create a new pull zone: maxcdn only supports 1 origin
             origin = service_obj.origins[0]
@@ -95,10 +93,10 @@ class ServiceController(base.ServiceBase):
             return self.responder.failed(str(e))
 
     def delete(self, project_id, pullzone_id):
-        '''MaxCDN create.
+        """MaxCDN create.
 
          manager needs to pass in a service name to delete.
-        '''
+        """
         try:
             delete_response = self.client.delete('/zones/pull.json/%s'
                                                  % pullzone_id)
@@ -120,7 +118,7 @@ class ServiceController(base.ServiceBase):
 
     # TODO(tonytan4ever): get service
     def get(self, service_name):
-        '''Get details of the service, as stored by the provider.'''
+        """Get details of the service, as stored by the provider."""
         return {'domains': [], 'origins': [], 'caching': []}
 
     def _map_service_name(self, service_name):
@@ -139,9 +137,8 @@ class ServiceController(base.ServiceBase):
     def get_provider_service_id(self, service_obj):
         return self._map_service_name(service_obj.name)
 
-    def get_metrics_by_domain(self, project_id, domain_name, region,
-                              **extras):
-        '''Use MaxCDN's API to get the metrics by domain.'''
+    def get_metrics_by_domain(self, project_id, domain_name, region, **extras):
+        """Use MaxCDN's API to get the metrics by domain."""
         return []
 
     @decorators.lazy_property(write=False)
